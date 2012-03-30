@@ -2,6 +2,8 @@ package br.com.usjt.aeroporto.dao;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +40,10 @@ public abstract class GenericDAO<T> {
 	}
 
 	protected List<T> findByAll() {
-		List<T> findObject = getCurrentSession().createQuery("from :classe")
-				.list();
-		return findObject;
+		String jpql = "select * from :pClasse";
+		Query query = (Query) this.getCurrentSession().createQuery(jpql);
+		query.setParameter(":pClasse", classe);
+		return query.getResultList();
 	}
 
 	public Session getCurrentSession() {
