@@ -14,10 +14,11 @@ import br.com.usjt.aeroporto.entity.Aeronave;
  */
 @Repository("AeronaveDAO")
 @Transactional
-public class AeronaveDAOImpl extends GenericDAO<Aeronave> implements
+public class AeronaveDAOImpl extends GenericDAOImpl<Aeronave> implements
 		AeronaveDAO {
 
 	public AeronaveDAOImpl(Class<Aeronave> classe) {
 		super(Aeronave.class);
 	}
+
 }
