@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets" 
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui">
+   
+ <ui:composition template="/_template.xhtml">
+<ui:define name="titulo">
+	<title>Sistema Aeroporto - AirPort</title>
+	</ui:define>
+	<ui:define name="usuario">
+	<div id="usuarioLogado">		
+		<h:form>
+
+		</h:form>	
+	</div>
+	</ui:define>
+
+	<ui:define name="corpo">
+		<h2>Cadastros de Aeronaves</h2>
+			<h:form id="dadosAeronaves" prependId="false" enctype="multipart/form-data">	
+				<fieldset>
+					<legend>Dados de Aeronaves</legend>
+					<h:panelGrid columns="3">
+							<p:editor />
+					</h:panelGrid>
+				</fieldset>
+			</h:form>
+	</ui:define>
+ </ui:composition>
+</html>	  
