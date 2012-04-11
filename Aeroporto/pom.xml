@@ -109,10 +109,10 @@
 			<artifactId>asm-commons</artifactId>
 			<version>3.1</version>
 		</dependency>
-		<dependency> 
-    		<groupId>org.primefaces</groupId>  
-    		<artifactId>primefaces</artifactId>  
-    		<version>3.2</version>  
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>3.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.faces</groupId>
@@ -125,6 +125,14 @@
 			<version>2.1.7</version>
 		</dependency>
   </dependencies>
+  <!-- Maven repositories -->
+	<repositories>
+    	<repository>
+        	<id>prime-repo</id>
+        	<name>Prime Repo</name>
+        	<url>http://repository.primefaces.org</url>
+  		</repository>
+	</repositories> 
   <build>
     <finalName>Aeroporto</finalName>
   </build>
