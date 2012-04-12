@@ -3,6 +3,9 @@ package br.com.usjt.aeroporto.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Aeronave {
@@ -10,7 +13,11 @@ public class Aeronave {
 	@Id
 	@GeneratedValue
 	private Long id;
+	@NotNull
+	@NotEmpty
 	private String nome;
+	@NotNull
+	@NotEmpty
 	private Integer quantidadeAssentos;
 
 	/**

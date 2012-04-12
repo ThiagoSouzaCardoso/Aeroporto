@@ -15,7 +15,7 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
 
 	@Autowired
 	protected SessionFactory sessionFactory;
-
+	
 	public GenericDAOImpl(Class<T> classe) {
 		this.classe = classe;
 	}

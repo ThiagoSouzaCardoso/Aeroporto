@@ -13,6 +13,15 @@
 		<welcome-file>default.jsp</welcome-file>
 		<welcome-file>index.xhtml</welcome-file>
 	</welcome-file-list>
+		<!-- Configuracao do Spring -->
+	<listener>
+	   <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  	</listener>
+  	<context-param>
+    	 <param-name>contextConfigLocation</param-name>
+         <param-value>/WEB-INF/spring/applicationContext.xml</param-value>
+  	</context-param>
+  	
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>

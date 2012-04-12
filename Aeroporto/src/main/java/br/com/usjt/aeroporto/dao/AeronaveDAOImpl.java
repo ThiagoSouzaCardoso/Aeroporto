@@ -17,7 +17,7 @@ import br.com.usjt.aeroporto.entity.Aeronave;
 public class AeronaveDAOImpl extends GenericDAOImpl<Aeronave> implements
 		AeronaveDAO {
 
-	public AeronaveDAOImpl(Class<Aeronave> classe) {
+	public AeronaveDAOImpl() {
 		super(Aeronave.class);
 	}
 

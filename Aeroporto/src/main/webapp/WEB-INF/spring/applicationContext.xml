@@ -18,4 +18,32 @@
 	<context:component-scan base-package="br.com.usjt.aeroporto" />
 	<!-- define que as transaçoes irao ser anotadas -->
 	<tx:annotation-driven />
+	
+		<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.connection.url">jdbc:mysql://localhost/aeroporto</prop>
+				<prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+				<prop key="hibernate.connection.username">root</prop>
+				<prop key="hibernate.connection.password"></prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				<value>br.com.usjt.aeroporto.entity.Aeronave</value>
+			</list>
+		</property>
+	</bean>
+
+
+<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+<property name="sessionFactory" ref="sessionFactory"/>
+</bean>
+<tx:annotation-driven/>
+	
 </beans>
