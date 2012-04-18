@@ -1,17 +1,28 @@
 package br.com.usjt.aeroporto.mb;
 
+
+
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import br.com.usjt.aeroporto.dao.AeronaveDAO;
 import br.com.usjt.aeroporto.entity.Aeronave;
 
 @ManagedBean(name = "aeronaveBean")
 @ViewScoped
-public class AeronaveBean {
+@Service
+public class AeronaveBean implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5111562560040908083L;
 
 	private Aeronave aeronave = new Aeronave();
 
@@ -35,7 +46,9 @@ public class AeronaveBean {
 	}
 
 	public void salvarAeronave() {
-		dao.save(aeronave);
+		
+		System.out.println("entrou");
+		dao.save(this.aeronave);
 	}
-
+	
 }

@@ -26,8 +26,14 @@
 					<h:panelGrid columns="3">
 							<h:outputText value="Nome"/><br/>
 							<p:inputText value="#{aeronaveBean.aeronave.nome}" />
+							
+							<h:outputText value="Assentos"/><br/>
+							<p:inputText value="#{aeronaveBean.aeronave.quantidadeAssentos}" />
+							
+					<p:commandButton value="Gravar" action="#{aeronaveBean.salvarAeronave}">
+					</p:commandButton>
+
 					</h:panelGrid>
-					<p:commandButton value="Salvar" update="dadosAeronaves" actionListener="aeronaveBean.salvarAeronave"/>
 				</fieldset>
 			</h:form>
 	</ui:define>

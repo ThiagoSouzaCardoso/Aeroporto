@@ -2,41 +2,44 @@ package br.com.usjt.aeroporto.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
 
 @SuppressWarnings("unchecked")
+@Transactional
 public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
 
 	protected Class<T> classe;
 
-	@Autowired
-	protected SessionFactory sessionFactory;
+	@PersistenceContext
+	protected EntityManager entityManager;
 	
 	public GenericDAOImpl(Class<T> classe) {
 		this.classe = classe;
 	}
 
 	public void save(T t) {
-		getCurrentSession().save(t);
+		
+		getCurrentSession().persist(t);
 
 	}
 
 	public void update(T t) {
-		getCurrentSession().update(t);
+		getCurrentSession().merge(t);
 
 	}
 
 	public void delete(T t) {
-		getCurrentSession().delete(t);
+		entityManager.remove(t);
 
 	}
 
 	public T findById(Long id) {
-		return (T) getCurrentSession().get(classe, id);
+		return (T) getCurrentSession().find(classe, id);
 	}
 
 	public List<T> findByAll() {
@@ -46,8 +49,8 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
 		return query.getResultList();
 	}
 
-	public Session getCurrentSession() {
-		return sessionFactory.getCurrentSession();
+	public EntityManager getCurrentSession() {
+		return entityManager;
 	}
 
 }
