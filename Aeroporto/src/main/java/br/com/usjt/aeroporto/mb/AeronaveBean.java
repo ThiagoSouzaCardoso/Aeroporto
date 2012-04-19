@@ -1,7 +1,5 @@
 package br.com.usjt.aeroporto.mb;
 
-
-
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
@@ -46,9 +44,7 @@ public class AeronaveBean implements Serializable {
 	}
 
 	public void salvarAeronave() {
-		
-		System.out.println("entrou");
 		dao.save(this.aeronave);
 	}
-	
+
 }

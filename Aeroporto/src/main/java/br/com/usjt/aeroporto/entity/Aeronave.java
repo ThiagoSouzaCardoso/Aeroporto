@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class Aeronave implements Serializable{
+public class Aeronave implements Serializable {
 
 	/**
 	 * 
@@ -19,10 +19,9 @@ public class Aeronave implements Serializable{
 	@Id
 	@GeneratedValue
 	private Long id;
-	@NotNull
 	@NotEmpty
 	private String nome;
-	@NotNull
+	@NotNull(message = "sei la bla bla bla")
 	private Integer quantidadeAssentos;
 
 	/**
@@ -70,7 +69,9 @@ public class Aeronave implements Serializable{
 		this.quantidadeAssentos = quantidadeAssentos;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -86,7 +87,9 @@ public class Aeronave implements Serializable{
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
