@@ -11,6 +11,19 @@
 <ui:insert name="titulo"/>
 </h:head>
 <h:body>
+		<h:form>
+			<h:commandLink action="#{internacionalizacaoBean.mudaParaIngles}">
+				<h:graphicImage library="imagens" name="ingles.png" />
+			</h:commandLink>
+			
+			<h:commandLink action="#{internacionalizacaoBean.mudaParaFrances}">
+				<h:graphicImage library="imagens" name="frances.png" />
+			</h:commandLink>
+			
+			<h:commandLink action="#{internacionalizacaoBean.mudaParaPortugues}">
+				<h:graphicImage library="imagens" name="portugues.png" />
+			</h:commandLink>
+		</h:form>
 	<div id="blocoCabecalho">
 		<div class="container">
 			<h:graphicImage library="imagens" name="logo-uber.png" id="logoCompany"/>

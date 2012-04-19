@@ -21,7 +21,7 @@ public class Aeronave implements Serializable {
 	private Long id;
 	@NotEmpty
 	private String nome;
-	@NotNull(message = "sei la bla bla bla")
+	@NotNull
 	private Integer quantidadeAssentos;
 
 	/**

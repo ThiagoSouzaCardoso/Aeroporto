@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<ui:composition template="/_template.xhtml">
+	
+		<ui:define name="titulo_pagina">
+			Login do UberDist
+		</ui:define>
+	
+		<ui:define name="corpo">
+		
+			<h2>#{bundle.label_loginSistema}</h2>
+			<h:form>
+				<h:panelGrid columns="2" styleClass="campos">
+					<h:outputLabel value="#{bundle.label_login}" />
+					<h:inputText value="#{loginBean.usuario.login}" />
+					<h:outputLabel value="#{bundle.label_senha}" />
+					<h:inputSecret value="#{loginBean.usuario.senha}" />
+					
+					<p:commandButton value="#{bundle.botao_efetuaLogin}"
+						action="#{loginBean.efetuaLogin}"/>
+				</h:panelGrid>
+			</h:form>
+			
+		</ui:define>
+	</ui:composition>
+</html>
