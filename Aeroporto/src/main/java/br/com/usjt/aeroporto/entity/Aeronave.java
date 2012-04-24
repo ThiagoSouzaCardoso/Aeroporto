@@ -1,10 +1,12 @@
 package br.com.usjt.aeroporto.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -23,6 +25,8 @@ public class Aeronave implements Serializable {
 	private String nome;
 	@NotNull
 	private Integer quantidadeAssentos;
+	@OneToMany(mappedBy = "aeronave")
+	private List<Voo> listVoos;
 
 	/**
 	 * @return the id
@@ -69,63 +73,19 @@ public class Aeronave implements Serializable {
 		this.quantidadeAssentos = quantidadeAssentos;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
+	/**
+	 * @return the listVoos
 	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime
-				* result
-				+ ((quantidadeAssentos == null) ? 0 : quantidadeAssentos
-						.hashCode());
-		return result;
+	public List<Voo> getListVoos() {
+		return listVoos;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * @param listVoos
+	 *            the listVoos to set
 	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof Aeronave)) {
-			return false;
-		}
-		Aeronave other = (Aeronave) obj;
-		if (id == null) {
-			if (other.id != null) {
-				return false;
-			}
-		} else if (!id.equals(other.id)) {
-			return false;
-		}
-		if (nome == null) {
-			if (other.nome != null) {
-				return false;
-			}
-		} else if (!nome.equals(other.nome)) {
-			return false;
-		}
-		if (quantidadeAssentos == null) {
-			if (other.quantidadeAssentos != null) {
-				return false;
-			}
-		} else if (!quantidadeAssentos.equals(other.quantidadeAssentos)) {
-			return false;
-		}
-		return true;
+	public void setListVoos(List<Voo> listVoos) {
+		this.listVoos = listVoos;
 	}
 
 }
