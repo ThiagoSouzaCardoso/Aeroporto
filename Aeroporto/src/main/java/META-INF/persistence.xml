@@ -9,6 +9,7 @@
 		<persistence:properties>
 			<persistence:property name="hibernate.format_sql" value="true"/>
 			<persistence:property name="hibernate.hbm2ddl.auto" value="update" />
+			<persistence:property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/> 
 		</persistence:properties>
 	</persistence:persistence-unit>
 	

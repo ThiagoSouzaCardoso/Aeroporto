@@ -11,12 +11,14 @@
 	<title>Sistema Aeroporto - AirPort</title>
 	</ui:define>
 	<ui:define name="usuario">
-	<div id="usuarioLogado">		
+	<div id="usuarioLogado">
 		<h:form>
-
+		<h:commandButton  action="#{produtoBean.invalidaSessao}" value="logout" rendered="true"/> 
+		<h:outputLabel value="Usuario: #{loginBean.usuario.login}" />
 		</h:form>	
 	</div>
 	</ui:define>
+	
 
 	<ui:define name="corpo">
 		<h2>#{bundle.label_cadastroAeronave}</h2>

@@ -19,14 +19,30 @@
 	<!-- define que as transaçoes irao ser anotadas -->
 	<tx:annotation-driven />
 	
-	<!-- Configuracao do Banco de Dados -->
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/aeroporto" />
-		<property name="username" value="root" />
+	<!-- Configuracao do Banco de Dados sem c3p0-->
+<!-- 	<bean id="dataSource" -->
+<!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+<!-- 		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
+<!-- 		<property name="url" value="jdbc:mysql://localhost:3306/aeroporto" /> -->
+<!-- 		<property name="username" value="root" /> -->
+<!-- 		<property name="password" value="" /> -->
+<!-- 	</bean> -->
+
+<!-- Configuracao do Banco de Dados com c3p0-->
+<bean id="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/aeroporto" />
+		<property name="user" value="root" />
 		<property name="password" value="" />
+		
+		<property name="minPoolSize" value="15"/>
+    	<property name="maxPoolSize" value="200"/>
+    	<property name="maxStatements" value="100"/>
+		
 	</bean>
+
+
 	<!-- Configuracao do Hibernate -->
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
