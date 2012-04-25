@@ -4,10 +4,17 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.validator.constraints.Email;
 
 @Entity
 public class Passageiro implements Serializable {
@@ -17,23 +24,21 @@ public class Passageiro implements Serializable {
 	 */
 	private static final long serialVersionUID = -6345703297939174898L;
 
-	@Id
-	@GeneratedValue
 	private Long Id;
 	private String nome;
 	private String sobreNome;
 	private Integer telefone;
 	private String email;
 	private Calendar dataNascimento;
-	private String tipoPassageiro;
-	private String formaTratamento;
-
-	@OneToMany(mappedBy = "passageiro")
+	private TipoPassageiro tipoPassageiro;
+	private FormaTratamento formaTratamento;
 	private List<Passagem> listPassagem;
 
 	/**
 	 * @return the id
 	 */
+	@Id
+	@GeneratedValue
 	public Long getId() {
 		return Id;
 	}
@@ -49,6 +54,7 @@ public class Passageiro implements Serializable {
 	/**
 	 * @return the nome
 	 */
+	@Column(length = 12)
 	public String getNome() {
 		return nome;
 	}
@@ -64,6 +70,8 @@ public class Passageiro implements Serializable {
 	/**
 	 * @return the sobreNome
 	 */
+
+	@Column(length = 100)
 	public String getSobreNome() {
 		return sobreNome;
 	}
@@ -94,6 +102,7 @@ public class Passageiro implements Serializable {
 	/**
 	 * @return the email
 	 */
+	@Email
 	public String getEmail() {
 		return email;
 	}
@@ -109,6 +118,7 @@ public class Passageiro implements Serializable {
 	/**
 	 * @return the dataNascimento
 	 */
+	@Temporal(TemporalType.DATE)
 	public Calendar getDataNascimento() {
 		return dataNascimento;
 	}
@@ -124,7 +134,8 @@ public class Passageiro implements Serializable {
 	/**
 	 * @return the tipoPassageiro
 	 */
-	public String getTipoPassageiro() {
+	@Enumerated(EnumType.ORDINAL)
+	public TipoPassageiro getTipoPassageiro() {
 		return tipoPassageiro;
 	}
 
@@ -132,14 +143,15 @@ public class Passageiro implements Serializable {
 	 * @param tipoPassageiro
 	 *            the tipoPassageiro to set
 	 */
-	public void setTipoPassageiro(String tipoPassageiro) {
+	public void setTipoPassageiro(TipoPassageiro tipoPassageiro) {
 		this.tipoPassageiro = tipoPassageiro;
 	}
 
 	/**
 	 * @return the formaTratamento
 	 */
-	public String getFormaTratamento() {
+	@Enumerated(EnumType.ORDINAL)
+	public FormaTratamento getFormaTratamento() {
 		return formaTratamento;
 	}
 
@@ -147,13 +159,14 @@ public class Passageiro implements Serializable {
 	 * @param formaTratamento
 	 *            the formaTratamento to set
 	 */
-	public void setFormaTratamento(String formaTratamento) {
+	public void setFormaTratamento(FormaTratamento formaTratamento) {
 		this.formaTratamento = formaTratamento;
 	}
 
 	/**
 	 * @return the listPassagem
 	 */
+	@OneToMany(mappedBy = "passageiro")
 	public List<Passagem> getListPassagem() {
 		return listPassagem;
 	}

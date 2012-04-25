@@ -137,4 +137,18 @@ public class Voo implements Serializable {
 		this.aeronave = aeronave;
 	}
 
+	/**
+	 * @return the listPassagem
+	 */
+	public List<Passagem> getListPassagem() {
+		return listPassagem;
+	}
+
+	/**
+	 * @param listPassagem the listPassagem to set
+	 */
+	public void setListPassagem(List<Passagem> listPassagem) {
+		this.listPassagem = listPassagem;
+	}
+
 }

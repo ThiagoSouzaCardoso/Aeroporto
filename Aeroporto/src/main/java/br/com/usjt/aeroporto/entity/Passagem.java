@@ -4,11 +4,14 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Calendar;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Passagem implements Serializable {
@@ -18,8 +21,6 @@ public class Passagem implements Serializable {
 	 */
 	private static final long serialVersionUID = 1708030779262976277L;
 
-	@Id
-	@GeneratedValue
 	private Long Id;
 	private Calendar dataCompra;
 	private BigDecimal valorPassagem;
@@ -27,16 +28,16 @@ public class Passagem implements Serializable {
 	private Integer codDespachoMalas;
 	private BigDecimal taxaEmbarque;
 	private Integer numeroSolicitacaoPassagem;
-	@ManyToOne
 	private Passageiro passageiro;
-	@ManyToOne
 	private Voo voo;
-	@OneToOne
 	private Pagamento pagamento;
 
 	/**
 	 * @return the id
 	 */
+	@Id
+	@GeneratedValue
+	@Column(unique = true, nullable = false)
 	public Long getId() {
 		return Id;
 	}
@@ -52,6 +53,8 @@ public class Passagem implements Serializable {
 	/**
 	 * @return the dataCompra
 	 */
+	@Temporal(TemporalType.DATE)
+	@Column(nullable = false)
 	public Calendar getDataCompra() {
 		return dataCompra;
 	}
@@ -67,6 +70,7 @@ public class Passagem implements Serializable {
 	/**
 	 * @return the valorPassagem
 	 */
+	@Column(precision = 10, scale = 2)
 	public BigDecimal getValorPassagem() {
 		return valorPassagem;
 	}
@@ -82,6 +86,7 @@ public class Passagem implements Serializable {
 	/**
 	 * @return the assento
 	 */
+	@Column(nullable = false, length = 3)
 	public Integer getAssento() {
 		return assento;
 	}
@@ -97,6 +102,7 @@ public class Passagem implements Serializable {
 	/**
 	 * @return the codDespachoMalas
 	 */
+	@Column(nullable = false, length = 15)
 	public Integer getCodDespachoMalas() {
 		return codDespachoMalas;
 	}
@@ -112,6 +118,7 @@ public class Passagem implements Serializable {
 	/**
 	 * @return the taxaEmbarque
 	 */
+	@Column(precision = 10, scale = 2)
 	public BigDecimal getTaxaEmbarque() {
 		return taxaEmbarque;
 	}
@@ -142,6 +149,7 @@ public class Passagem implements Serializable {
 	/**
 	 * @return the passageiro
 	 */
+	@ManyToOne
 	public Passageiro getPassageiro() {
 		return passageiro;
 	}
@@ -157,6 +165,7 @@ public class Passagem implements Serializable {
 	/**
 	 * @return the voo
 	 */
+	@ManyToOne
 	public Voo getVoo() {
 		return voo;
 	}
@@ -172,12 +181,14 @@ public class Passagem implements Serializable {
 	/**
 	 * @return the pagamento
 	 */
+	@OneToOne
 	public Pagamento getPagamento() {
 		return pagamento;
 	}
 
 	/**
-	 * @param pagamento the pagamento to set
+	 * @param pagamento
+	 *            the pagamento to set
 	 */
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
