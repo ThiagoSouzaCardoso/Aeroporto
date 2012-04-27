@@ -26,10 +26,6 @@ public class PassageiroBean {
 	@Qualifier("PassageiroDAO")
 	PassageiroDAO dao;
 
-	public void salvarPassageiro() {
-		dao.save(passageiro);
-	}
-
 	/**
 	 * @return the passageiro
 	 */
@@ -54,4 +50,11 @@ public class PassageiroBean {
 		}
 		return listFormaTratamento;
 	}
+
+	public void salvarPassageiro() {
+		dao.save(passageiro);
+		passageiro = new Passageiro();
+
+	}
+
 }

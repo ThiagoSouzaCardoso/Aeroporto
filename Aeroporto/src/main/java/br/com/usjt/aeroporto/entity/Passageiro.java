@@ -29,7 +29,7 @@ public class Passageiro implements Serializable {
 	private String sobreNome;
 	private Integer telefone;
 	private String email;
-	private Calendar dataNascimento;
+	private Calendar dataNascimento = Calendar.getInstance();
 	private TipoPassageiro tipoPassageiro;
 	private FormaTratamento formaTratamento;
 	private List<Passagem> listPassagem;
