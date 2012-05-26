@@ -13,51 +13,52 @@
 	    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
 	<!-- Seta anotaçoes para serem usadas pelo Spring -->
-	<context:annotation-config />
+			<context:annotation-config />
 	<!-- Define o pacote onde o Spring vai procurar por beans anotados -->
-	<context:component-scan base-package="br.com.usjt.aeroporto" />
+			<context:component-scan base-package="br.com.usjt.aeroporto" />
 	<!-- define que as transaçoes irao ser anotadas -->
-	<tx:annotation-driven />
+			<tx:annotation-driven />
 	
 	<!-- Configuracao do Banco de Dados sem c3p0-->
-<!-- 	<bean id="dataSource" -->
-<!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
-<!-- 		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
-<!-- 		<property name="url" value="jdbc:mysql://localhost:3306/aeroporto" /> -->
-<!-- 		<property name="username" value="root" /> -->
-<!-- 		<property name="password" value="" /> -->
-<!-- 	</bean> -->
+	<!-- 	<bean id="dataSource" -->
+	<!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+	<!-- 		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
+	<!-- 		<property name="url" value="jdbc:mysql://localhost:3306/aeroporto" /> -->
+	<!-- 		<property name="username" value="root" /> -->
+	<!-- 		<property name="password" value="" /> -->
+	<!-- 	</bean> -->
 
-<!-- Configuracao do Banco de Dados com c3p0-->
-<bean id="dataSource"
-		class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/aeroporto" />
-		<property name="user" value="root" />
-		<property name="password" value="" />
-		
-		<property name="minPoolSize" value="15"/>
-    	<property name="maxPoolSize" value="200"/>
-    	<property name="maxStatements" value="100"/>
-		
-	</bean>
+	<!-- Configuracao do Banco de Dados com c3p0-->
+			<bean id="dataSource"
+					class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+					<property name="driverClass" value="com.mysql.jdbc.Driver" />
+					<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/aeroporto" />
+					<property name="user" value="root" />
+					<property name="password" value="" />
+					
+					<property name="minPoolSize" value="15"/>
+			    	<property name="maxPoolSize" value="200"/>
+			    	<property name="maxStatements" value="100"/>
+					
+			</bean>
 
 
 	<!-- Configuracao do Hibernate -->
-	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="aeroporto" />
-		<property name="dataSource" ref="dataSource" />
-		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="databasePlatform" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
-				<property name="showSql" value="true" /> 
+			<bean id="entityManagerFactory"
+				class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+				<property name="persistenceUnitName" value="aeroporto" />
+				<property name="dataSource" ref="dataSource" />
+				<property name="jpaVendorAdapter">
+					<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+						<property name="databasePlatform" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+						<property name="showSql" value="true" /> 
+					</bean>
+				</property>
 			</bean>
-		</property>
-	</bean>
+			
 	<!-- Configuracao do gerente de transacoes do Spring -->
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
+			<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+				<property name="entityManagerFactory" ref="entityManagerFactory" />
+			</bean>
 	
 </beans>

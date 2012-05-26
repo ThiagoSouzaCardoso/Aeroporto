@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 @SessionScoped
 public class InternacionalizacaoBean {
-	private Locale locale = new Locale("en");
+	private Locale locale = new Locale("pt");
 
 	public void mudaParaPortugues() {
 		locale = new Locale("pt");

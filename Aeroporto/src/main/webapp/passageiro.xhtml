@@ -29,15 +29,36 @@
 					<legend>#{bundle.label_passageiro_data}</legend>
 					<h:panelGrid columns="3">
 
-							<h:outputText value="#{bundle.label_passageiro_tipoTratamento}"/><br/>
-							<p:calendar value="#{passageiroBean.passageiro.dataNascimento.time}" mode="popup" showOn="button"/>
-
 							<h:outputText value="#{bundle.label_passageiro_tipoTratamento}"/>
-							<p:selectOneMenu value="#{passageiroBean.passageiro.formaTratamento}" effect="fade" >
+							<p:selectOneMenu id="tipoTratamento" value="#{passageiroBean.passageiro.formaTratamento}" effect="fade" >
 								<f:selectItem  itemLabel="" itemValue="" />
 								<f:selectItems value="#{passageiroBean.formaTratamento }" var="formaTratamento" itemLabel="#{formaTratamento.description}" itemValue="#{formaTratamento}" />
 							</p:selectOneMenu>
-					
+							<p:message for="tipoTratamento"/>
+							
+							<h:outputText value="#{bundle.label_passageiro_nome}"/>
+							<p:inputText value="#{passageiroBean.passageiro.nome}" id="nome" size="14" maxlength="12"/>
+							<p:message for="nome"/>
+							
+							<h:outputText value="#{bundle.label_passageiro_sobrenome}"/>
+							<p:inputText value="#{passageiroBean.passageiro.sobreNome}" id="sobrenome"/>
+							<p:message for="sobrenome"/>
+							
+							<h:outputText value="#{bundle.label_passageiro_dataNascimento}"/>
+							<p:calendar id="dataNascimento" value="#{passageiroBean.passageiro.dataNascimento.time}" showButtonPanel="true" locale="pt" mode="popup" showOn="button" navigator="true"/>
+							<p:message for="dataNascimento"/>
+							
+							<h:outputText value="#{bundle.label_passageiro_email}"/>
+							<p:inputText id="email" value="#{passageiroBean.passageiro.email}" />
+							<p:message for="email"/>
+							
+                            <h:outputText value="#{bundle.label_passageiro_tipoPassageiro}"/>
+							<p:selectOneMenu id="tipoPassageiro" value="#{passageiroBean.passageiro.tipoPassageiro}" effect="fade" >
+								<f:selectItem  itemLabel="" itemValue="" />
+								<f:selectItems value="#{passageiroBean.tipoPassageiro }" var="tipoPassageiro" itemLabel="#{tipoPassageiro.description}" itemValue="#{tipoPassageiro}" />
+							</p:selectOneMenu>
+							<p:message for="tipoPassageiro"/>
+							
 					<p:commandButton value="#{bundle.label_savePassageiro}" update="dadosAeronaves" action="#{passageiroBean.salvarPassageiro}">
 					</p:commandButton>
 

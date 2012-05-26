@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import br.com.usjt.aeroporto.dao.PassageiroDAO;
 import br.com.usjt.aeroporto.entity.FormaTratamento;
 import br.com.usjt.aeroporto.entity.Passageiro;
+import br.com.usjt.aeroporto.entity.TipoPassageiro;
 
 @ManagedBean(name = "passageiroBean")
 @ViewScoped
@@ -49,6 +50,16 @@ public class PassageiroBean {
 			listFormaTratamento.add(new SelectItem(ft.name(), ft.toString()));
 		}
 		return listFormaTratamento;
+	}
+
+	public List<SelectItem> getTipoPassageiro() {
+
+		List<SelectItem> listTipoPassageiro = new ArrayList<SelectItem>();
+
+		for (TipoPassageiro ft : TipoPassageiro.values()) {
+			listTipoPassageiro.add(new SelectItem(ft.name(), ft.toString()));
+		}
+		return listTipoPassageiro;
 	}
 
 	public void salvarPassageiro() {

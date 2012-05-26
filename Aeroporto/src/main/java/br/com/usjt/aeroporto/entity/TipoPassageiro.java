@@ -1,20 +1,20 @@
 package br.com.usjt.aeroporto.entity;
 
+import java.util.ResourceBundle;
+
+import javax.faces.context.FacesContext;
+
 public enum TipoPassageiro {
 
-	ADULTO("Adulto"), CRIANCA("Criança"), BEBE("Bebê");
+	ADULTO, CRIANCA, BEBE;
 
-	private String tipoPassageiro;
+	@Override
+	public String toString() {
 
-	TipoPassageiro(String tipoPassageiro) {
-		this.tipoPassageiro = tipoPassageiro;
+		ResourceBundle res = ResourceBundle.getBundle(
+				"br.com.usjt.mensagens.Resources", FacesContext
+						.getCurrentInstance().getViewRoot().getLocale());
+
+		return res.getString(name() + ".string");
 	}
-
-	/**
-	 * @return the tipoPassageiro
-	 */
-	public String getTipoPassageiro() {
-		return tipoPassageiro;
-	}
-
 }

@@ -15,6 +15,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Passageiro implements Serializable {
@@ -54,6 +55,7 @@ public class Passageiro implements Serializable {
 	/**
 	 * @return the nome
 	 */
+	@NotBlank
 	@Column(length = 12)
 	public String getNome() {
 		return nome;
@@ -70,7 +72,7 @@ public class Passageiro implements Serializable {
 	/**
 	 * @return the sobreNome
 	 */
-
+	@NotBlank(message = "blblblblblblblalalalal")
 	@Column(length = 100)
 	public String getSobreNome() {
 		return sobreNome;

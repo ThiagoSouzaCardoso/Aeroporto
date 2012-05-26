@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Aeronave implements Serializable {
@@ -21,7 +21,7 @@ public class Aeronave implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@NotEmpty
+	@NotBlank
 	private String nome;
 	@NotNull
 	private Integer quantidadeAssentos;
