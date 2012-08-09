@@ -72,7 +72,7 @@ public class Passageiro implements Serializable {
 	/**
 	 * @return the sobreNome
 	 */
-	@NotBlank(message = "blblblblblblblalalalal")
+	@NotBlank
 	@Column(length = 100)
 	public String getSobreNome() {
 		return sobreNome;

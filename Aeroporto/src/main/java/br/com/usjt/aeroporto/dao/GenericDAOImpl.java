@@ -8,7 +8,6 @@ import javax.persistence.Query;
 
 import org.springframework.transaction.annotation.Transactional;
 
-
 @SuppressWarnings("unchecked")
 @Transactional
 public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
@@ -17,13 +16,13 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
 
 	@PersistenceContext
 	protected EntityManager entityManager;
-	
+
 	public GenericDAOImpl(Class<T> classe) {
 		this.classe = classe;
 	}
 
 	public void save(T t) {
-		
+
 		getCurrentSession().persist(t);
 
 	}
@@ -39,13 +38,13 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
 	}
 
 	public T findById(Long id) {
-		return (T) getCurrentSession().find(classe, id);
+		return getCurrentSession().find(classe, id);
 	}
 
 	public List<T> findByAll() {
-		String jpql = "select * from :pClasse";
-		Query query = (Query) this.getCurrentSession().createQuery(jpql);
-		query.setParameter(":pClasse", classe);
+		String jpql = "FROM :pClasse";
+		Query query = this.getCurrentSession().createQuery(jpql);
+		query.setParameter(":pClasse", classe.toString());
 		return query.getResultList();
 	}
 
