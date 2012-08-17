@@ -21,26 +21,30 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
 		this.classe = classe;
 	}
 
+	@Override
 	public void save(T t) {
 
 		getCurrentSession().persist(t);
 
 	}
 
+	@Override
 	public void update(T t) {
 		getCurrentSession().merge(t);
 
 	}
 
+	@Override
 	public void delete(T t) {
-		entityManager.remove(t);
-
+		getCurrentSession().remove(t);
 	}
 
+	@Override
 	public T findById(Long id) {
 		return getCurrentSession().find(classe, id);
 	}
 
+	@Override
 	public List<T> findByAll() {
 		String jpql = "FROM :pClasse";
 		Query query = this.getCurrentSession().createQuery(jpql);
