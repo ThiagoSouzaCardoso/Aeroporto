@@ -14,7 +14,6 @@ public class InternacionalizacaoBean {
 
 	public void mudaParaPortugues() {
 		locale = new Locale("pt");
-		// Locale locale = new Locale("pt","BR");
 		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
 	}
 
