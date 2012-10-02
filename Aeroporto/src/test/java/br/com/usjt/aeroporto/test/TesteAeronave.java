@@ -1,5 +1,7 @@
 package br.com.usjt.aeroporto.test;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +56,12 @@ public class TesteAeronave {
 	@Test
 	public void deleta() {
 		dao.delete(aeronaveCria);
+	}
+
+	@Test
+	public void procuraTodos() {
+		List<Aeronave> aeronaves = dao.findByAll();
+		System.out.println(aeronaves);
 	}
 
 }

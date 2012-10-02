@@ -46,9 +46,7 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
 
 	@Override
 	public List<T> findByAll() {
-		String jpql = "FROM :pClasse";
-		Query query = this.getCurrentSession().createQuery(jpql);
-		query.setParameter(":pClasse", classe.toString());
+		Query query = entityManager.createQuery("from " + classe.getName());
 		return query.getResultList();
 	}
 
