@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.usjt.aeroporto.dao.AeronaveDAO;
 import br.com.usjt.aeroporto.entity.Aeronave;
+import br.com.usjt.aeroporto.util.MessageUtil;
 
 @ManagedBean(name = "aeronaveBean")
 @ViewScoped
@@ -45,6 +46,10 @@ public class AeronaveBean implements Serializable {
 
 	public void salvarAeronave() {
 		dao.save(this.aeronave);
+		this.aeronave = new Aeronave();
+
+		MessageUtil.addMessage("msg_sucessOk", "tlt_cadastre");
+
 	}
 
 }

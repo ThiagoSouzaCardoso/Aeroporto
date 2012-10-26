@@ -1,8 +1,6 @@
 package br.com.usjt.aeroporto.entity;
 
-import java.util.ResourceBundle;
-
-import javax.faces.context.FacesContext;
+import br.com.usjt.aeroporto.util.MessageUtil;
 
 public enum FormaTratamento {
 
@@ -11,10 +9,6 @@ public enum FormaTratamento {
 	@Override
 	public String toString() {
 
-		ResourceBundle res = ResourceBundle.getBundle(
-				"br.com.usjt.mensagens.Resources", FacesContext
-						.getCurrentInstance().getViewRoot().getLocale());
-
-		return res.getString(name() + ".string");
+		return MessageUtil.addMessageEnum(name());
 	}
 }

@@ -15,6 +15,7 @@ import br.com.usjt.aeroporto.dao.PassageiroDAO;
 import br.com.usjt.aeroporto.entity.FormaTratamento;
 import br.com.usjt.aeroporto.entity.Passageiro;
 import br.com.usjt.aeroporto.entity.TipoPassageiro;
+import br.com.usjt.aeroporto.util.MessageUtil;
 
 @ManagedBean(name = "passageiroBean")
 @ViewScoped
@@ -65,6 +66,7 @@ public class PassageiroBean {
 	public void salvarPassageiro() {
 		dao.save(passageiro);
 		passageiro = new Passageiro();
+		MessageUtil.addMessage("msg_sucessOk", "tlt_cadastre");
 
 	}
 
