@@ -54,9 +54,7 @@ public class PassageiroBean {
 	}
 
 	public List<SelectItem> getTipoPassageiro() {
-
 		List<SelectItem> listTipoPassageiro = new ArrayList<SelectItem>();
-
 		for (TipoPassageiro ft : TipoPassageiro.values()) {
 			listTipoPassageiro.add(new SelectItem(ft.name(), ft.toString()));
 		}
@@ -64,10 +62,13 @@ public class PassageiroBean {
 	}
 
 	public void salvarPassageiro() {
-		dao.save(passageiro);
-		passageiro = new Passageiro();
+		dao.save(this.passageiro);
+		clean();
 		MessageUtil.addMessage("msg_sucessOk", "tlt_cadastre");
+	}
 
+	public void clean() {
+		this.passageiro = new Passageiro();
 	}
 
 }

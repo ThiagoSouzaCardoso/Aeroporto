@@ -4,6 +4,9 @@
 package br.com.usjt.aeroporto.dao;
 
 import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,8 +19,7 @@ import br.com.usjt.aeroporto.entity.Aeronave;
  */
 @Repository("AeronaveDAO")
 @Transactional
-public class AeronaveDAOImpl extends GenericDAOImpl<Aeronave> implements
-		AeronaveDAO, Serializable{
+public class AeronaveDAOImpl extends GenericDAOImpl<Aeronave> implements AeronaveDAO, Serializable {
 
 	/**
 	 * 
@@ -27,5 +29,12 @@ public class AeronaveDAOImpl extends GenericDAOImpl<Aeronave> implements
 	public AeronaveDAOImpl() {
 		super(Aeronave.class);
 	}
-	
+
+	@Override
+	public List<Aeronave> findAllName(String name) {
+		Query query = getCurrentSession().createQuery("from Aeronave a where a.nome = :pName");
+		query.setParameter("pName", name);
+		return query.getResultList();
+	}
+
 }

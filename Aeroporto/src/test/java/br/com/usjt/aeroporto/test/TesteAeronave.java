@@ -2,7 +2,6 @@ package br.com.usjt.aeroporto.test;
 
 import java.util.List;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,7 +20,7 @@ public class TesteAeronave {
 	private AeronaveDAO dao;
 	Aeronave aeronaveCria = new Aeronave();
 
-	@Test
+	// @Test
 	public void atualizar() {
 
 		// Aeronave aeronave = dao.findById(1L);
@@ -35,7 +34,7 @@ public class TesteAeronave {
 
 	}
 
-	@Test
+	// @Test
 	public void procura() {
 		Aeronave aeronave = new Aeronave();
 		aeronave.setId(1L);
@@ -43,7 +42,7 @@ public class TesteAeronave {
 		System.out.println(aeronave.getNome());
 	}
 
-	@Test
+	// @Test
 	public void criar() {
 
 		aeronaveCria.setNome("Austria");
@@ -53,12 +52,12 @@ public class TesteAeronave {
 
 	}
 
-	@Test
+	// @Test
 	public void deleta() {
 		dao.delete(aeronaveCria);
 	}
 
-	@Test
+	// @Test
 	public void procuraTodos() {
 		List<Aeronave> aeronaves = dao.findByAll();
 		System.out.println(aeronaves);

@@ -11,6 +11,10 @@ public class MessageUtil {
 		currentInstanceUtil().addMessage(null, new FacesMessage(bundleName(title), bundleName(key)));
 	}
 
+	public static void addErrorMessage(String key, String title) {
+		currentInstanceUtil().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, bundleName(title), bundleName(key)));
+	}
+
 	public static String addMessageEnum(String key) {
 
 		return bundleName(key);

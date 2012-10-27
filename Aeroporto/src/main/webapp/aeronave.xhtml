@@ -5,48 +5,21 @@
 	  xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:p="http://primefaces.org/ui">
-   
- <ui:composition template="/_template.xhtml">
-<ui:define name="titulo">
-	<title>Sistema Aeroporto - AirPort</title>
-	</ui:define>
-	<ui:define name="usuario">
-	<div id="usuarioLogado">
-		<h:form>
-		<h:commandButton  action="#{produtoBean.invalidaSessao}" value="logout" rendered="true"/> 
-		<h:outputLabel value="Usuario: #{loginBean.usuario.login}" />
-		</h:form>	
-	</div>
-	</ui:define>
-	
+	  
+<ui:composition template="/_template.xhtml">
+	<ui:define name="titulo">
+		<title>Sistema Aeroporto - AirPort</title>
+	</ui:define>		
 
 	<ui:define name="corpo">
-		<h2>#{bundle.label_cadastroAeronave}</h2>
-			<h:form id="dadosAeronaves" prependId="false" enctype="multipart/form-data">	
-			<p:growl id="messagem" showDetail="true" globalOnly="true" />
-			
-				<!--<fieldset>-->
-				<div align="left">
-					<p:panel id="pnl" header="#{bundle.label_aircraft_data}"> 
-				
-				<!--<legend>#{bundle.label_aircraft_data}</legend>-->
-					<h:panelGrid columns="4">
-							<h:outputText value="#{bundle.label_aircraft_name}"/><br/>
-							<p:inputText value="#{aeronaveBean.aeronave.nome}" id="nome" />
-							<p:message for="nome"/>
-							
-							<h:outputText value="#{bundle.label_aircraft_seats}" for="assentos"/><br/>
-							<p:inputText id="quantidadeAssentos" value="#{aeronaveBean.aeronave.quantidadeAssentos}" />
-							<p:message for="quantidadeAssentos"/>
-							
-					<p:commandButton value="#{bundle.label_saveaircraft}" update="dadosAeronaves messagem" action="#{aeronaveBean.salvarAeronave}">
-					</p:commandButton>
-
-					</h:panelGrid>
-					</p:panel>
-					</div>
-				<!--</fieldset> -->
-			</h:form>
+		<p:tabView>
+			<p:tab title="Cadastro" >
+				<ui:include src="/aeronaveCadastro.xhtml" />
+			</p:tab>
+			<p:tab title="Consulta">
+				<ui:include src="/aeronaveConsulta.xhtml" />
+			</p:tab>		
+		</p:tabView>
 	</ui:define>
- </ui:composition>
-</html>	  
+</ui:composition>
+</html>
