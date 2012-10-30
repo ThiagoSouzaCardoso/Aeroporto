@@ -32,8 +32,8 @@ public class AeronaveDAOImpl extends GenericDAOImpl<Aeronave> implements Aeronav
 
 	@Override
 	public List<Aeronave> findAllName(String name) {
-		Query query = getCurrentSession().createQuery("from Aeronave a where a.nome = :pName");
-		query.setParameter("pName", name);
+		Query query = getCurrentSession().createQuery("from " + classe.getName() + " a where a.nome = :pNome");
+		query.setParameter("pNome", name);
 		return query.getResultList();
 	}
 

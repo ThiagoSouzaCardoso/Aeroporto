@@ -34,7 +34,7 @@
 					</p:panel>
 					</div>
 					
-	<p:dataTable id="dataTable" var="aeronave" value="#{aeronaveBean.listaAeronaves}"
+	<p:dataTable id="dataTable" var="aeronave" value="#{aeronaveBean.listaAeronaves}" emptyMessage="#{bundle.btn_clean}"
                  paginator="true" rows="10"
                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                  rowsPerPageTemplate="5,10,15">
