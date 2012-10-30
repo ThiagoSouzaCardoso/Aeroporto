@@ -6,21 +6,22 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-import br.com.usjt.aeroporto.dao.AeronaveDAO;
 import br.com.usjt.aeroporto.entity.Aeronave;
+import br.com.usjt.aeroporto.service.AeronaveService;
 import br.com.usjt.aeroporto.util.MessageUtil;
 
 @ManagedBean(name = "aeronaveBean")
-@ViewScoped
-@Service
+@SessionScoped
+@Component
+@Scope("session")
 public class AeronaveBean implements Serializable {
 
 	/**
@@ -32,8 +33,7 @@ public class AeronaveBean implements Serializable {
 	private List<Aeronave> listaAeronaves = new ArrayList<Aeronave>();
 
 	@Autowired
-	@Qualifier("AeronaveDAO")
-	private AeronaveDAO dao;
+	private AeronaveService aeronaveService;
 
 	/**
 	 * @return the aeronave
@@ -58,15 +58,14 @@ public class AeronaveBean implements Serializable {
 	}
 
 	public void salvarAeronave() {
-		dao.save(this.aeronave);
-		this.aeronave = new Aeronave();
-
+		aeronaveService.salvarAeronave(aeronave);
+		clean();
 		MessageUtil.addMessage("msg_sucessOk", "tlt_cadastre");
 
 	}
 
 	public void consultaAeronave() {
-		this.listaAeronaves = dao.findAllName(this.aeronave.getNome());
+		this.listaAeronaves = aeronaveService.consultaAeronave(aeronave);
 
 		if (listaAeronaves.isEmpty())
 			MessageUtil.addErrorMessage("msg_errorForSearch", "tlt_consult");
@@ -79,14 +78,13 @@ public class AeronaveBean implements Serializable {
 	}
 
 	public void remove() {
-		dao.delete(aeronave);
+		aeronaveService.removeAeronave(aeronave);
 	}
 
 	public void onEdit(RowEditEvent event) {
-		dao.update(((Aeronave) event.getObject()));
 
-		FacesMessage msg = new FacesMessage("Car Edited", ((Aeronave) event.getObject()).getNome());
-		FacesContext.getCurrentInstance().addMessage(null, msg);
+		aeronaveService.atualizaAeronave((Aeronave) event.getObject());
+
 	}
 
 	public void onCancel(RowEditEvent event) {
