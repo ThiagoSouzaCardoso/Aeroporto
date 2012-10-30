@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
+import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -73,6 +76,22 @@ public class AeronaveBean implements Serializable {
 	public void clean() {
 		this.aeronave = new Aeronave();
 		this.listaAeronaves = new ArrayList<Aeronave>();
+	}
+
+	public void remove() {
+		dao.delete(aeronave);
+	}
+
+	public void onEdit(RowEditEvent event) {
+		dao.update(((Aeronave) event.getObject()));
+
+		FacesMessage msg = new FacesMessage("Car Edited", ((Aeronave) event.getObject()).getNome());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void onCancel(RowEditEvent event) {
+		FacesMessage msg = new FacesMessage("Car Cancelled", ((Aeronave) event.getObject()).getNome());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 }

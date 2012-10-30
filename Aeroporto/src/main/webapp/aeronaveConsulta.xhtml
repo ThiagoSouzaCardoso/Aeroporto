@@ -10,7 +10,6 @@
 		<h2>#{bundle.label_consultaAeronave}</h2>
 <h:form id="dadosAeronavesConsulta" prependId="false" enctype="multipart/form-data">	
 			<p:growl id="messagemConsulta" showDetail="true" globalOnly="true" />
-			
 				<div align="left">
 					<p:panel id="pnlConsulta" header="#{bundle.label_aircraft_data}"> 
 				
@@ -34,27 +33,43 @@
 					</p:panel>
 					</div>
 					
-	<p:dataTable id="dataTable" var="aeronave" value="#{aeronaveBean.listaAeronaves}" emptyMessage="#{bundle.btn_clean}"
+	<p:dataTable id="dataTable" var="aeronave" value="#{aeronaveBean.listaAeronaves}" emptyMessage="#{bundle.emptyMessage}" editable="true"
                  paginator="true" rows="10"
                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                  rowsPerPageTemplate="5,10,15">
         <f:facet name="header" >
            <h:outputText value="#{bundle.label_aircraft_list}"/>
         </f:facet>
+			<p:ajax event="rowEdit" listener="#{aeronaveBean.onEdit}" update="dataTable"/>  
+       		<p:ajax event="rowEditCancel" listener="#{aeronaveBean.onCancel}" update="dataTable" />
+        
+		<p:column headerText="#{bundle.label_aircraft_name}">
+             <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{aeronave.nome}" />
+                </f:facet>
+                <f:facet name="input">
+                    <p:inputText value="#{aeronave.nome}"/>
+                </f:facet>
+            </p:cellEditor>
+		</p:column>
+	
+		<p:column headerText="#{bundle.label_aircraft_seats}">
+             <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{aeronave.quantidadeAssentos}" />
+                </f:facet>
+                <f:facet name="input">
+                    <p:inputText value="#{aeronave.quantidadeAssentos}"/>
+                </f:facet>
+            </p:cellEditor>
+		</p:column>
+   
+		<p:column>
+             <p:rowEditor />
+		</p:column>
+	   
 
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="#{bundle.label_aircraft_name}" />
-            </f:facet>
-            <h:outputText value="#{aeronave.nome}" />
-        </p:column>
-
-        <p:column>
-            <f:facet name="header">
-                <h:outputText value="#{bundle.label_aircraft_seats}" />
-            </f:facet>
-            <h:outputText value="#{aeronave.quantidadeAssentos}" />
-        </p:column>       
     </p:dataTable>
 					
 </h:form>
