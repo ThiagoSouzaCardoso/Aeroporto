@@ -105,6 +105,7 @@ public class Passageiro implements Serializable {
 	 * @return the email
 	 */
 	@Email
+	@NotBlank
 	public String getEmail() {
 		return email;
 	}

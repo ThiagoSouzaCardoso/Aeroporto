@@ -8,25 +8,25 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-import br.com.usjt.aeroporto.dao.PassageiroDAO;
 import br.com.usjt.aeroporto.entity.FormaTratamento;
 import br.com.usjt.aeroporto.entity.Passageiro;
 import br.com.usjt.aeroporto.entity.TipoPassageiro;
+import br.com.usjt.aeroporto.service.PassageiroService;
 import br.com.usjt.aeroporto.util.MessageUtil;
 
 @ManagedBean(name = "passageiroBean")
 @ViewScoped
-@Service
+@Component
+@Scope("session")
 public class PassageiroBean {
 
 	private Passageiro passageiro = new Passageiro();
 
 	@Autowired
-	@Qualifier("PassageiroDAO")
-	PassageiroDAO dao;
+	PassageiroService passageiroService;
 
 	/**
 	 * @return the passageiro
@@ -62,7 +62,7 @@ public class PassageiroBean {
 	}
 
 	public void salvarPassageiro() {
-		dao.save(this.passageiro);
+		passageiroService.salvarPassageiro(this.passageiro);
 		clean();
 		MessageUtil.addMessage("msg_sucessOk", "tlt_cadastre");
 	}
