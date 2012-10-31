@@ -21,5 +21,9 @@
 			<supported-locale>en</supported-locale>
 		</locale-config>
 	</application>
+	
+	<lifecycle>
+		<phase-listener>br.com.usjt.aeroporto.listener.LoginPhaseListener</phase-listener>
+	</lifecycle>
 
 </faces-config>
