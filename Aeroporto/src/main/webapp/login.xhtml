@@ -12,17 +12,24 @@
 	
 		<ui:define name="corpo">
 		
-			<h2>#{bundle.label_loginSistema}</h2>
+			<h2></h2>
 			<h:form>
-				<h:panelGrid columns="2" styleClass="campos">
+			<div align="center">
+			<p:panelGrid columns="2" style="margin-top:20px" >
+			
+			<f:facet name="header">
+				#{bundle.label_loginSistema}
+			</f:facet>  
 					<h:outputLabel value="#{bundle.label_login}" />
-					<h:inputText value="#{loginBean.usuario.login}" />
+					<p:inputText value="#{loginBean.usuario.login}" />
 					<h:outputLabel value="#{bundle.label_senha}" />
-					<h:inputSecret value="#{loginBean.usuario.senha}" />
+					<p:password value="#{loginBean.usuario.senha}" />
 					
-					<p:commandButton value="#{bundle.botao_efetuaLogin}"
-						action="#{loginBean.efetuarLogin}"/>
-				</h:panelGrid>
+					<f:facet name="footer">  
+						<p:commandButton value="#{bundle.botao_efetuaLogin}" action="#{loginBean.efetuarLogin}"/>
+   					</f:facet>  		
+			</p:panelGrid>
+			</div>
 			</h:form>
 			
 		</ui:define>

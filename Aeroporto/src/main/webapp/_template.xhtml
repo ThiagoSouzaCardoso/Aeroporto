@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
 	  xmlns:ui="http://java.sun.com/jsf/facelets"
 	  xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:h="http://java.sun.com/jsf/html">
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui">
 <f:view contentType="text/html"/>
 <h:head>
 <h:outputStylesheet library="css" name="grid.css"/>
@@ -32,6 +33,13 @@
 			<br/>
 			<br/>
 			<ui:insert name="usuario" >
+				<div id="usuarioLogado">
+					<h:form>
+						<h:commandButton  action="#{loginBean.logout}" value="logout" rendered="#{loginBean.logado}"/> 
+						<h:outputLabel value="Usuario: #{loginBean.usuario.login}" rendered="#{loginBean.logado}"/>
+					</h:form>	
+				</div>
+
 
 			</ui:insert>
 		</div>

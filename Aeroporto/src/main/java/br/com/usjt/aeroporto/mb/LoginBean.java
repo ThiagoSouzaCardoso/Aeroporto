@@ -58,9 +58,11 @@ public class LoginBean {
 		return logado.isLogado();
 	}
 
-	public void logout() {
+	public String logout() {
 		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		request.getSession().invalidate();
+
+		return "login?faces-redirect=true";
 	}
 
 }
