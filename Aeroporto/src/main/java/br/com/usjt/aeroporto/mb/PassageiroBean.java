@@ -1,5 +1,7 @@
 package br.com.usjt.aeroporto.mb;
 
+import static javax.faces.application.FacesMessage.SEVERITY_INFO;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,7 +66,7 @@ public class PassageiroBean {
 	public void salvarPassageiro() {
 		passageiroService.salvarPassageiro(this.passageiro);
 		clean();
-		MessageUtil.addMessage("msg_sucessOk", "tlt_cadastre");
+		MessageUtil.addMessage("msg_sucessOk", "tlt_cadastre", SEVERITY_INFO);
 	}
 
 	public void clean() {

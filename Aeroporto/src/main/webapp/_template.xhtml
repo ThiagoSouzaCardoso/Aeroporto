@@ -12,21 +12,35 @@
 <ui:insert name="titulo"/>
 </h:head>
 <h:body>
-		<div align="right">
+<div align="center">
 		<h:form>
-			<h:commandLink action="#{internacionalizacaoBean.mudaParaIngles}">
-				<h:graphicImage library="imagens" name="ingles.png" />
-			</h:commandLink>
-			
-			<h:commandLink action="#{internacionalizacaoBean.mudaParaFrances}">
-				<h:graphicImage library="imagens" name="frances.png" />
-			</h:commandLink>
-			
-			<h:commandLink action="#{internacionalizacaoBean.mudaParaPortugues}">
-				<h:graphicImage library="imagens" name="portugues.png" />
-			</h:commandLink>
+		
+				<p:toolbar style="text-align: center; width: 900px">
+					<p:toolbarGroup align="left">
+						<p:menubar autoSubmenuDisplay="false" style="text-align: center; width: 796px;border:0px; ">
+							<p:menuitem url="passageiro.xhtml" value="Passageiros" />
+							<p:menuitem url="aeronave.xhtml" value="Aeronaves" />
+						</p:menubar>	
+					</p:toolbarGroup>
+					
+					<p:toolbarGroup align="right">
+								<h:commandLink action="#{internacionalizacaoBean.mudaParaIngles}" >
+			                   		<p:graphicImage library="imagens" name="ingles.png"/> 
+			                    </h:commandLink>
+								
+								<h:commandLink action="#{internacionalizacaoBean.mudaParaFrances}">
+                   					<p:graphicImage library="imagens" name="frances.png"/> 
+                   				</h:commandLink>		                   
+		                   		
+		                   		<h:commandLink action="#{internacionalizacaoBean.mudaParaPortugues}">
+                   					<p:graphicImage library="imagens" name="portugues.png"/> 
+                  				</h:commandLink>
+                  				
+					</p:toolbarGroup>
+				</p:toolbar>
 		</h:form>
-		</div>
+</div>		 
+
 	<div id="blocoCabecalho">
 		<div class="container">
 			<h:graphicImage library="imagens" name="logo.png" id="logoCompany"/>
@@ -35,8 +49,7 @@
 			<ui:insert name="usuario" >
 				<div id="usuarioLogado">
 					<h:form>
-						<h:commandButton  action="#{loginBean.logout}" value="logout" rendered="#{loginBean.logado}"/> 
-						<h:outputLabel value="Usuario: #{loginBean.usuario.login}" rendered="#{loginBean.logado}"/>
+						<p:commandButton  type="push" value="Logout" icon="ui-icon-power"  action="#{loginBean.logout}" rendered="#{loginBean.logado}"/>
 					</h:form>	
 				</div>
 

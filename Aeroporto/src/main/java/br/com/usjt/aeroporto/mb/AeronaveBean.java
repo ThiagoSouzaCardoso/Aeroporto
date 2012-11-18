@@ -1,5 +1,8 @@
 package br.com.usjt.aeroporto.mb;
 
+import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
+import static javax.faces.application.FacesMessage.SEVERITY_INFO;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +63,7 @@ public class AeronaveBean implements Serializable {
 	public void salvarAeronave() {
 		aeronaveService.salvarAeronave(aeronave);
 		clean();
-		MessageUtil.addMessage("msg_sucessOk", "tlt_cadastre");
+		MessageUtil.addMessage("msg_sucessOk", "tlt_cadastre", SEVERITY_INFO);
 
 	}
 
@@ -68,7 +71,7 @@ public class AeronaveBean implements Serializable {
 		this.listaAeronaves = aeronaveService.consultaAeronave(aeronave);
 
 		if (listaAeronaves.isEmpty())
-			MessageUtil.addErrorMessage("msg_errorForSearch", "tlt_consult");
+			MessageUtil.addMessage("tlt_consult", "msg_errorForSearch", SEVERITY_ERROR);
 
 	}
 

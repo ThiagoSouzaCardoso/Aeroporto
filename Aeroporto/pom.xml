@@ -197,7 +197,7 @@
 						<showDeprecation>true</showDeprecation>
 						<showWarnings>true</showWarnings>
 						<encoding>UTF-8</encoding>
-				</configuration>
+				    </configuration>
     			</plugin>
 		</plugins>
 	</build>
